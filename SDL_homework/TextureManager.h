@@ -11,10 +11,7 @@ public:
 		SDL_Renderer* ren); // създава сървейс, зарежда имг и трие сърфейса
 
 	void drawTexture(std::string id,
-		int x,
-		int y,
-		int width,
-		int height,
+		SDL_Rect destRect,
 		SDL_Renderer* ren,
 		SDL_RendererFlip flip = SDL_FLIP_NONE);
 

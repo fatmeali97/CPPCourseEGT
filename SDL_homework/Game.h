@@ -8,7 +8,12 @@ class Game {
 public:
 	Game();
 	~Game();
-	bool init(const char* title, int xpos, int ypos, int width, int height, int flags);
+	bool init(const char* title, 
+		int xpos,
+		int ypos, 
+		int width,
+		int height,
+		int flags);
 	void render();
 	void update();
 	void handleEvents();
@@ -20,8 +25,10 @@ private:
 	SDL_Renderer* renderer = NULL;
 	bool running;
 
-	SDL_Rect srcRect;
-	SDL_Rect destRect;
+	int heartPosX;
+	bool moveToRight = true;
+	int heartHeight = 230;
+	int heartWidht = 250;
 
-	int tempX;
+
 };

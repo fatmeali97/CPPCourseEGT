@@ -23,20 +23,12 @@ bool TextureManager::loadTexture(const char* fileName,
 }
 
 void TextureManager::drawTexture(std::string id,
-	int x, int y,
-	int width, int height,
+	SDL_Rect destRect,
 	SDL_Renderer* ren,
 	SDL_RendererFlip flip)
 {
-	SDL_Rect srcRect;
-	SDL_Rect destRect;
-	srcRect.x = srcRect.y = 0;
-	srcRect.w = destRect.w = width;
-	srcRect.h = destRect.h = height;
-	destRect.x = x;
-	destRect.y = y /2 ; //  за да е в средата
-
-	SDL_RenderCopyEx(ren, textureMap[id], &srcRect, &destRect, 0, 0, flip);
+	
+	SDL_RenderCopyEx(ren, textureMap[id], NULL, &destRect, 0, 0, flip);
 
 }
 

@@ -20,7 +20,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 
 				TextureManager::Instance()->loadTexture("./assets/tup_tup.png",
-					"png",
+					"heart",
 					renderer);
 
 
@@ -50,56 +50,58 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 void Game::render() {
 	SDL_RenderClear(renderer);
 
-
 	int ww, wh;
 	SDL_GetWindowSize(window, &ww, &wh);
 
+	int heartPosY = (wh / 2) - heartHeight /2;
 	
-
-	if (destRect.x <= 993)
-	{
-		TextureManager::Instance()->drawTexture("png",
-			destRect.x, wh - 228,
-			260, 228,
-			renderer);
-		destRect.x++;
-		tempX = destRect.x;
-	}
-	else
-	{
-		TextureManager::Instance()->drawTexture("png",
-			tempX, wh - 228,
-			260, 228,
-			renderer);
-
-		tempX--;
-
-		if (tempX == 0)
-		{
-			destRect.x = 0;
-		}
-	}
+	TextureManager::Instance()->drawTexture("heart", { heartPosX, heartPosY, heartWidht, heartHeight }, renderer);
+	TextureManager::Instance()->drawTexture("heart", { heartPosX, heartPosY, heartWidht, heartHeight }, renderer);
 
 	SDL_RenderPresent(renderer);
 }
 
-void Game::handleEvents() {
+void Game::handleEvents() 
+{
 	SDL_Event event;
-	if (SDL_PollEvent(&event)) {
-		switch (event.type) {
+	if (SDL_PollEvent(&event)) 
+	{
+		switch (event.type) 
+		{
 		case SDL_QUIT: running = false; break;
 		default: break;
 		}
 	}
 }
 
-void Game::update() {
+void Game::update() 
+{
+	int ww, wh;
+	SDL_GetWindowSize(window, &ww, &wh);
 	
+	if (heartPosX > ww - heartWidht)
+	{
+		moveToRight = false;
+	}
+	if (heartPosX < 0)
+	{
+		moveToRight = true;
+	}
+
+	if (moveToRight)
+	{
+		heartPosX += 1;
+	}
+	else 
+	{
+		heartPosX -= 1;
+	}
 
 
 }
 
-void Game::clean() {
+void Game::clean() 
+{
 	std::cout << "cleaning game\n";
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
@@ -116,7 +118,7 @@ Game::Game() {
 	Game::window = NULL;
 	Game::renderer = NULL;
 	Game::running = true;
-	Game::tempX = 0;
+	Game::heartPosX = 0;
 
 }
 
