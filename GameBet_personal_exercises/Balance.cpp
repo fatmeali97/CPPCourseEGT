@@ -31,7 +31,7 @@ double Balance::GetAmount() const
 
 double Balance::Win()
 {
-	double newBalance = m_balance = m_balance + m_amount;
+	double newBalance = m_balance + m_amount;
 	SetBalance(newBalance);
 	return 	GetBalance();
 
