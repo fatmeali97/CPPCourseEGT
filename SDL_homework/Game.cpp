@@ -56,7 +56,6 @@ void Game::render() {
 	int heartPosY = (wh / 2) - heartHeight /2;
 	
 	TextureManager::Instance()->drawTexture("heart", { heartPosX, heartPosY, heartWidht, heartHeight }, renderer);
-	TextureManager::Instance()->drawTexture("heart", { heartPosX, heartPosY, heartWidht, heartHeight }, renderer);
 
 	SDL_RenderPresent(renderer);
 }
