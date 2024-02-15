@@ -102,13 +102,14 @@ void Game::clean()
 	SDL_Quit();
 }
 
-bool Game::isRunning() {
+bool Game::isRunning() 
+{
 	return Game::running;
 }
 
 
-
-Game::Game() {
+Game::Game() 
+{
 	Game::window = NULL;
 	Game::renderer = NULL;
 	Game::running = true;
@@ -117,7 +118,8 @@ Game::Game() {
 
 }
 
-Game::~Game() {
+Game::~Game()
+{
 	delete window;
 	delete renderer;
 }
