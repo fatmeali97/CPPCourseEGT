@@ -18,14 +18,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 				std::cout << "renderer creation success\n";
 				SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
-
-				//TextureManager::Instance()->loadTexture("./assets/tup_tup.png",
-				//	"heart",renderer);
+				
 				TextureManager::Instance()->loadTexture("./assets/adventurer_sprite_sheet_v1.1.png",
-					"sprite_sheet",
-					renderer);
-
-
+					"sprite_sheet", renderer);
 			}
 			else {
 				std::cout << "renderer init failed\n";
@@ -53,10 +48,6 @@ void Game::render() {
 
 	int ww, wh;
 	SDL_GetWindowSize(window, &ww, &wh);
-
-
-	//TextureManager::Instance()->drawTexture("heart", (ww / 2) - heartWidht / 2 ,
-	//	(wh / 2) - heartHeight / 2 ,130 , 120, renderer);
 
 	TextureManager::Instance()->drawOneFrameFromTexture
 	("sprite_sheet", SpriteX, SpriteY, 32, 32, 1,
