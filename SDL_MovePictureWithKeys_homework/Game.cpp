@@ -3,9 +3,10 @@
 #include "TextureManager.h"
 #include <iostream>
 
-bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags) {
-
-	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
+bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags) 
+{
+	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) 
+    {
 		std::cout << "SDL init success\n";
 
 		window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
@@ -17,25 +18,26 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 			{
 				std::cout << "renderer creation success\n";
 				SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-
+                
 				heartPosY = (height / 2) - heartHeight / 2;
 				heartPosX = (width / 2) - heartHeight / 2;
 
 				TextureManager::Instance()->loadTexture("./assets/tup_tup.png", "heart", renderer);
-				
-	
 			}
-			else {
+			else 
+            {
 				std::cout << "renderer init failed\n";
 				return false;
 			}
 		}
-		else {
+		else
+        {
 			std::cout << "window init failed\n";
 			return false;
 		}
 	}
-	else {
+	else 
+    {
 		std::cout << "SDL init fail\n";
 		return false;
 	}
@@ -44,11 +46,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	return true;
 }
 
-
-
-void Game::render() {
+void Game::render() 
+{
 	SDL_RenderClear(renderer);
-
 
 	TextureManager::Instance()->drawTexture("heart", {heartPosX, heartPosY, heartWidht, heartHeight }, renderer);
 
@@ -62,31 +62,27 @@ void Game::handleEvents()
 	{
 		switch (event.type)
 		{
-		case SDL_QUIT: running = false; break;
-		case SDL_KEYDOWN:
-		{
-			if (event.key.keysym.sym == SDLK_LEFT)
-			{
-				heartPosX--;
-			}
-			if (event.key.keysym.sym == SDLK_RIGHT)
-			{
-				heartPosX++;
-
-			}
-			if (event.key.keysym.sym == SDLK_UP)
-			{
-				heartPosY--;
-
-			}
-			if (event.key.keysym.sym == SDLK_DOWN)
-			{
-				heartPosY++;
-
-			}
-		}; break;
-
-		default: break;
+		    case SDL_QUIT: running = false; break;
+		    case SDL_KEYDOWN:
+		    {
+			    if (event.key.keysym.sym == SDLK_LEFT)
+			    {
+				    heartPosX--;
+			    }
+    			if (event.key.keysym.sym == SDLK_RIGHT)
+    			{
+    				heartPosX++;
+    			}
+    			if (event.key.keysym.sym == SDLK_UP)
+    			{
+    				heartPosY--;
+    			}
+    			if (event.key.keysym.sym == SDLK_DOWN)
+    			{
+    				heartPosY++;
+    			}
+		    }; break;
+		    default: break;
 		}
 	}
 }
