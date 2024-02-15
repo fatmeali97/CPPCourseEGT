@@ -18,14 +18,12 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 				std::cout << "renderer creation success\n";
 				SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
+				heartPosY = (height / 2) - heartHeight / 2;
+				heartPosX = (width / 2) - heartHeight / 2;
 
-				//TextureManager::Instance()->loadTexture("./assets/tup_tup.png",
-				//	"heart",renderer);
-				TextureManager::Instance()->loadTexture("./assets/adventurer_sprite_sheet_v1.1.png",
-					"sprite_sheet",
-					renderer);
-
-
+				TextureManager::Instance()->loadTexture("./assets/tup_tup.png", "heart", renderer);
+				
+	
 			}
 			else {
 				std::cout << "renderer init failed\n";
@@ -51,16 +49,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 void Game::render() {
 	SDL_RenderClear(renderer);
 
-	int ww, wh;
-	SDL_GetWindowSize(window, &ww, &wh);
 
-
-	//TextureManager::Instance()->drawTexture("heart", (ww / 2) - heartWidht / 2 ,
-	//	(wh / 2) - heartHeight / 2 ,130 , 120, renderer);
-
-	TextureManager::Instance()->drawOneFrameFromTexture
-	("sprite_sheet", SpriteX, SpriteY, 32, 32, 1,
-		currentFrame, renderer, frameFlip);
+	TextureManager::Instance()->drawTexture("heart", {heartPosX, heartPosY, heartWidht, heartHeight }, renderer);
 
 	SDL_RenderPresent(renderer);
 }
@@ -77,21 +67,21 @@ void Game::handleEvents()
 		{
 			if (event.key.keysym.sym == SDLK_LEFT)
 			{
-				SpriteX--;
+				heartPosX--;
 			}
 			if (event.key.keysym.sym == SDLK_RIGHT)
 			{
-				SpriteX++;
+				heartPosX++;
 
 			}
 			if (event.key.keysym.sym == SDLK_UP)
 			{
-				SpriteY--;
+				heartPosY--;
 
 			}
 			if (event.key.keysym.sym == SDLK_DOWN)
 			{
-				SpriteY++;
+				heartPosY++;
 
 			}
 		}; break;
@@ -105,13 +95,6 @@ void Game::update()
 {
 	int ww, wh;
 	SDL_GetWindowSize(window, &ww, &wh);
-
-	int FramesInSpriteSheet = 13;
-	int speed = 70; 
-
-	currentFrame = int(((SDL_GetTicks() / speed) % FramesInSpriteSheet));
-	
-
 
 }
 
@@ -134,7 +117,7 @@ Game::Game() {
 	Game::renderer = NULL;
 	Game::running = true;
 	Game::heartPosX = 0;
-	Game::heartPosX = 0;
+	Game::heartPosY = 0;
 
 }
 
