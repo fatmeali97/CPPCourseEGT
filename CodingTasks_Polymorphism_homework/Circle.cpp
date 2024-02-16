@@ -1,7 +1,15 @@
 #include "Circle.h"
+#include <iostream>
 
-Circle::Circle(double radius): radius(radius)
-{}
+Circle::Circle(std::string color, double radius)
+	: Shape(color), radius(radius){}
+
+void Circle::draw()
+{
+	std::cout << "Drawing a "
+		<< color << " circle"
+		<< std::endl;
+}
 
 double Circle::area()
 {
@@ -9,3 +17,4 @@ double Circle::area()
 	double area = radius * radius * pi;
 	return area;
 }
+

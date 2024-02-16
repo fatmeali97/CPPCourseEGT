@@ -1,9 +1,13 @@
 #pragma once
 #include "Shape.h"
-class Rectagle : public Shape
+
+class Rectangle : public Shape
 {
 public:
-	Rectagle(double width, double height);
+	Rectangle(std::string color,
+		double width,
+		double height);
+	void draw() override;
 	virtual double area()  override;
 
 private:

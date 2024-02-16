@@ -1,9 +1,11 @@
 #pragma once
 #include "Shape.h"
+
 class Circle : public Shape
 {
 public:
-	Circle (double radius);
+	Circle(std::string color, double radius);
+	void draw() override;
 	virtual double area()  override;
 
 private:

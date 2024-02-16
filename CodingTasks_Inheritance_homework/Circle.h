@@ -4,7 +4,7 @@
 class Circle : public Shape
 {
 public:
-	Circle(std::string color): Shape(color){}
+	Circle(std::string color);
 	void draw() override;
 };
 
