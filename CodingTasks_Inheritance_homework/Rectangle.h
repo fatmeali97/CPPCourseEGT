@@ -4,7 +4,7 @@
 class Rectangle : public Shape
 {
 public:
-	Rectangle(std::string color): Shape(color) {}
+	Rectangle(std::string color);
 	void draw() override;
 };
 
